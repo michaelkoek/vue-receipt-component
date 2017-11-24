@@ -1,10 +1,9 @@
 <template>
-    <div>
-        <li class="qwadd-invoice__item" v-for="(item, index) in products">
+    <ul class="invoice-component__list invoice-component__products">
+        <li class="invoice-component__item" v-for="(item, index) in products">
             {{ item.name }} - {{ priceSign }}
         </li>
-
-    </div>
+    </ul>
 </template>
 
 <script>
@@ -41,7 +40,10 @@
             }
         },
         mounted() {
+            Eventbus.$on('CURRENCY', (currencyType) => console.log('item', currencyType));
+
             this.$nextTick(() => {
+
                 const getTotalNumber = (prevValue, currentVal) => {
                     return { price: prevValue.price + currentVal.price }
                 };

@@ -76,7 +76,8 @@
                 this.calculatedTotal = payLoad;
             }
         },
-        created() {
+        mounted() {
+            Eventbus.$on('CURRENCY', (currencyType) => console.log('sum',currencyType));
             Eventbus.$on('CALC_TOTAL', (payLoad) => this.getSubTotal(payLoad));
         }
     }

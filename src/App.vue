@@ -1,12 +1,9 @@
 <template>
     <div id="app">
 
-
-        <receipts name="Your Invoice" v-if="true">
+        <receipts name="Your Invoice" v-if="true" currency="EUR">
             <receipt-items :products="invoiceItem"></receipt-items>
-
-            <receipt-summary slot="summary" :summary="invoiceSummaryData">
-            </receipt-summary>
+            <receipt-summary slot="summary" :summary="invoiceSummaryData"></receipt-summary>
         </receipts>
 
     </div>
@@ -19,7 +16,6 @@
         name: 'app',
         data() {
             return {
-                msg: 'Welcome to Your Vue.js App',
                 invoiceItem: [
                     { name: 'Cheese Product 1', price: 2.50 },
                     { name: 'Cheese Product 2', price: 3.23 },
@@ -29,7 +25,6 @@
                 invoiceSummaryData: {
                     // subtotal: 25.25,
                     discount: 10,
-                    currency: "euro",
                     // discountprice: 10,
                     vatpercentage: 6,
                     // vatprice: 20,
