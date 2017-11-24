@@ -1,60 +1,46 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-  </div>
+    <div id="app">
+
+
+        <receipts name="Your Invoice" v-if="true">
+            <receipt-items :products="invoiceItem"></receipt-items>
+
+            <receipt-summary slot="summary" :summary="invoiceSummaryData">
+            </receipt-summary>
+        </receipts>
+
+    </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+    import { Receipt, ReceiptItem, ReceiptSummary } from './receipt';
+
+    export default {
+        name: 'app',
+        data() {
+            return {
+                msg: 'Welcome to Your Vue.js App',
+                invoiceItem: [
+                    { name: 'Cheese Product 1', price: 2.50 },
+                    { name: 'Cheese Product 2', price: 3.23 },
+                    { name: 'Cheese Product 3', price: 4.35 },
+                    { name: 'Cheese Product 4', price: 1.99 }
+                ],
+                invoiceSummaryData: {
+                    // subtotal: 25.25,
+                    discount: 10,
+                    currency: "euro",
+                    // discountprice: 10,
+                    vatpercentage: 6,
+                    // vatprice: 20,
+                    // total: 1400
+                }
+            }
+        },
+        components: {
+            receipts: Receipt,
+            receiptItems: ReceiptItem,
+            receiptSummary: ReceiptSummary
+        }
     }
-  }
-}
 </script>
-
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>

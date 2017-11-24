@@ -1,6 +1,6 @@
-import Receipt from './components/Receipt';
-import ReceiptItem from './components/ReceiptItem';
-import ReceiptSummary from './components/ReceiptSummary'
+import Receipt from './components/Receipt.vue'
+import ReceiptItem from './components/ReceiptItem.vue';
+import ReceiptSummary from './components/ReceiptSummary.vue'
 
 
 export default {
