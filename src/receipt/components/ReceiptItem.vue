@@ -1,7 +1,7 @@
 <template>
     <ul class="invoice-component__list invoice-component__products">
         <li class="invoice-component__item" v-for="(item, index) in products">
-            {{ item.name }} - {{ item.price }}
+            {{ item.name }} - {{ priceSign(item.price) }}
         </li>
     </ul>
 </template>
@@ -23,8 +23,6 @@
                 required: true
             }
         },
-        computed: {
-        },
         mounted() {
             Eventbus.$on('CURRENCY', (currencyType) => console.log('item', currencyType));
 
@@ -39,6 +37,9 @@
             });
         },
         methods: {
+            priceSign(itemprice) {
+                return itemprice.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' });
+            },
             sendTotalAmount(totalPrice) {
                 Eventbus.$emit('CALC_TOTAL', totalPrice.price);
             }

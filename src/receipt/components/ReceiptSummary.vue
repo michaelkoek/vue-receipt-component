@@ -5,22 +5,22 @@
 
             <li class="qwadd-invoice--subtotal invoice-component__item">
                 <p class="invoice-component__item-name">Sub total:</p>
-                <p class="invoice-component__item-price">{{ calculatedTotal }}</p>
+                <p class="invoice-component__item-price">{{ calculatedTotal.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' }) }}</p>
             </li>
 
             <li class="invoice-component--vat invoice-component__item" v-if="summary.vatpercentage">
                 <p class="invoice-component__item-name">VAT({{ summary.vatpercentage }}%):</p>
-                <p class="invoice-component__item-price">{{ calculateVat }}</p>
+                <p class="invoice-component__item-price">{{ calculateVat.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' }) }}</p>
             </li>
 
             <li class="invoice-component--discount invoice-component__item" v-if="summary.discount">
                 <p class="invoice-component__item-name">Discount ({{ summary.discount }}%):</p>
-                <p class="invoice-component__item-price">- {{ calcDiscount }}</p>
+                <p class="invoice-component__item-price">- {{ calcDiscount.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' }) }}</p>
             </li>
 
             <li class="invoice-component--total invoice-component__item">
                 <p class="invoice-component__item-name">Total:</p>
-                <p class="invoice-component__item-price">{{ summary.total || calcTotal }}</p>
+                <p class="invoice-component__item-price">{{ (summary.total || calcTotal).toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' }) }}</p>
             </li>
         </ul>
     </div>
@@ -33,7 +33,7 @@
     export default {
         data() {
             return {
-                calculatedTotal: null
+                calculatedTotal: 0
             }
         },
         props: {
@@ -77,7 +77,7 @@
             }
         },
         mounted() {
-            Eventbus.$on('CURRENCY', (currencyType) => console.log('sum',currencyType));
+            Eventbus.$on('CURRENCY', (currencyType) => console.log('sum', currencyType));
             Eventbus.$on('CALC_TOTAL', (payLoad) => this.getSubTotal(payLoad));
         }
     }
