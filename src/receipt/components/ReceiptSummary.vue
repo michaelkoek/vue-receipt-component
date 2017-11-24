@@ -5,17 +5,17 @@
 
             <li class="qwadd-invoice--subtotal invoice-component__item">
                 <p class="invoice-component__item-name">Sub total:</p>
-                <p class="invoice-component__item-price">&euro; {{ calculatedTotal }}</p>
+                <p class="invoice-component__item-price">{{ calculatedTotal }}</p>
             </li>
 
             <li class="invoice-component--vat invoice-component__item" v-if="summary.vatpercentage">
                 <p class="invoice-component__item-name">VAT({{ summary.vatpercentage }}%):</p>
-                <p class="invoice-component__item-price">&euro;{{ calculateVat }}</p>
+                <p class="invoice-component__item-price">{{ calculateVat }}</p>
             </li>
 
             <li class="invoice-component--discount invoice-component__item" v-if="summary.discount">
                 <p class="invoice-component__item-name">Discount ({{ summary.discount }}%):</p>
-                <p class="invoice-component__item-price">- &euro;{{ calcDiscount }}</p>
+                <p class="invoice-component__item-price">- {{ calcDiscount }}</p>
             </li>
 
             <li class="invoice-component--total invoice-component__item">
@@ -65,7 +65,7 @@
                     this.calcDiscount * 100
                 ) / 100).toFixed(2);
 
-                return resultTotal.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' });
+                return resultTotal;
             }
         },
         methods: {
