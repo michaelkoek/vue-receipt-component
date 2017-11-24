@@ -1,4 +1,4 @@
-# vue-invoice-component
+# vue-invoice
 
 > A Vue.js project
 
