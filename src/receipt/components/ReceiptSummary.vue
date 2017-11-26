@@ -1,26 +1,26 @@
 <template>
 
-    <div class="invoice-component__summary">
-        <ul class="invoice-component__list">
+    <div class="receipt-component__summary">
+        <ul class="receipt-component__list">
 
-            <li class="qwadd-invoice--subtotal invoice-component__item">
-                <p class="invoice-component__item-name">Sub total:</p>
-                <p class="invoice-component__item-price">{{ calculatedTotal.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' }) }}</p>
+            <li class="qwadd-receipt--subtotal receipt-component__item">
+                <p class="receipt-component__item-name">Sub total:</p>
+                <p class="receipt-component__item-price">{{ currencySymbol }} {{ calculatedTotal }}</p>
             </li>
 
-            <li class="invoice-component--vat invoice-component__item" v-if="summary.vatpercentage">
-                <p class="invoice-component__item-name">VAT({{ summary.vatpercentage }}%):</p>
-                <p class="invoice-component__item-price">{{ calculateVat.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' }) }}</p>
+            <li class="receipt-component--vat receipt-component__item" v-if="summary.vatpercentage">
+                <p class="receipt-component__item-name">VAT({{ summary.vatpercentage }}%):</p>
+                <p class="receipt-component__item-price">{{ currencySymbol }} {{ calculateVat }}</p>
             </li>
 
-            <li class="invoice-component--discount invoice-component__item" v-if="summary.discount">
-                <p class="invoice-component__item-name">Discount ({{ summary.discount }}%):</p>
-                <p class="invoice-component__item-price">{{ calcDiscount.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' }) }}</p>
+            <li class="receipt-component--discount receipt-component__item" v-if="summary.discount">
+                <p class="receipt-component__item-name">Discount ({{ summary.discount }}%):</p>
+                <p class="receipt-component__item-price">{{ currencySymbol }} {{ calcDiscount }}</p>
             </li>
 
-            <li class="invoice-component--total invoice-component__item">
-                <p class="invoice-component__item-name">Total:</p>
-                <p class="invoice-component__item-price">{{ (summary.total || calcTotal).toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' }) }}</p>
+            <li class="receipt-component--total receipt-component__item">
+                <p class="receipt-component__item-name">Total:</p>
+                <p class="receipt-component__item-price">{{ currencySymbol }} {{ calcTotal }}</p>
             </li>
         </ul>
     </div>
@@ -29,11 +29,13 @@
 <script>
 
     import Eventbus from '../event-bus';
+    import currencyTypes from './currencytypes';
 
     export default {
         data() {
             return {
-                calculatedTotal: 0
+                calculatedTotal: 0,
+                currencyType: '',
             }
         },
         props: {
@@ -42,6 +44,13 @@
             }
         },
         computed: {
+            currencySymbol() {
+                if (!currencyTypes.currencySymbols[this.currencyType]) {
+                    return this.currencyType;
+                } else {
+                    return currencyTypes.currencySymbols[this.currencyType];
+                }
+            },
             calculateVat() {
                 if (this.summary.vatprice) return this.summary.vatprice;
 
@@ -59,6 +68,7 @@
             },
 
             calcTotal() {
+                if (this.summary.total) return this.summary.total;
                 const resultTotal = +((
                     this.calculatedTotal * 100 +
                     this.calculateVat * 100 -
@@ -77,8 +87,10 @@
             }
         },
         mounted() {
-            Eventbus.$on('CURRENCY', (currencyType) => console.log('sum', currencyType));
             Eventbus.$on('CALC_TOTAL', (payLoad) => this.getSubTotal(payLoad));
+            Eventbus.$on('CURRENCY', (currencyType) => {
+                this.currencyType = currencyType;
+            });
         }
     }
 </script>

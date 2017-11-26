@@ -9,17 +9,12 @@
 <script>
 
     import Eventbus from '../event-bus';
+    import currencyTypes from './currencytypes';
 
     export default {
         data() {
             return {
-                currency_symbols: {
-                    'USD': '$', // US Dollar
-                    'EUR': '€', // Euro
-                    'GBP': '£', // British Pound Sterling
-                    'JPY': '¥', // Japanese Yen
-                },
-                currency_default: 'YEN'
+                currencyType: ''
             }
         },
         props: {
@@ -30,16 +25,16 @@
         },
         computed: {
             currencySymbol() {
-                if (!this.currency_symbols[this.currency_default]) {
-                    return this.currency_default;
+                if (!currencyTypes.currencySymbols[this.currencyType]) {
+                    return this.currencyType;
                 } else {
-                    return this.currency_symbols[this.currency_default];
+                    return currencyTypes.currencySymbols[this.currencyType];
                 }
             }
         },
         mounted() {
             Eventbus.$on('CURRENCY', (currencyType) => {
-                this.currency_default = currencyType;
+                this.currencyType = currencyType;
             });
 
             this.$nextTick(() => {
