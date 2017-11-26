@@ -20,7 +20,7 @@ How to use:
 </receipts>
 ```
 
-##Usage
+## Usage
 
 The most common use case is to register the component globally.
 ```
