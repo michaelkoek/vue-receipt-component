@@ -1,7 +1,7 @@
 <template>
     <div id="app">
 
-        <receipts name="Your Invoice" v-if="true" currency="EUR">
+        <receipts name="Your Receipt" currency="EUR" v-if="true">
             <receipt-items :products="invoiceItem"></receipt-items>
             <receipt-summary slot="summary" :summary="invoiceSummaryData"></receipt-summary>
         </receipts>

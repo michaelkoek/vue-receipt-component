@@ -2,7 +2,6 @@ import Receipt from './components/Receipt.vue'
 import ReceiptItem from './components/ReceiptItem.vue';
 import ReceiptSummary from './components/ReceiptSummary.vue'
 
-
 export default {
     install (Vue) {
         Vue.component('receipt', Receipt);

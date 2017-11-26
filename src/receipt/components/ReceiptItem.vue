@@ -13,8 +13,13 @@
     export default {
         data() {
             return {
-                firstName: 'Foo',
-                lastName: 'Bar'
+                currency_symbols: {
+                    'USD': '$', // US Dollar
+                    'EUR': '€', // Euro
+                    'GBP': '£', // British Pound Sterling
+                    'JPY': '¥', // Japanese Yen
+                },
+                currency_default: 'YEN'
             }
         },
         props: {
@@ -23,22 +28,37 @@
                 required: true
             }
         },
+        computed: {
+            currencySymbol() {
+                if (!this.currency_symbols[this.currency_default]) {
+                    return this.currency_default;
+                } else {
+                    return this.currency_symbols[this.currency_default];
+                }
+            }
+        },
         mounted() {
-            Eventbus.$on('CURRENCY', (currencyType) => console.log('item', currencyType));
+            Eventbus.$on('CURRENCY', (currencyType) => {
+                this.currency_default = currencyType
+            });
 
             this.$nextTick(() => {
-
                 const getTotalNumber = (prevValue, currentVal) => {
                     return { price: prevValue.price + currentVal.price }
                 };
                 const totalPrice = this.products.reduce(getTotalNumber);
-
                 this.sendTotalAmount(totalPrice);
             });
         },
         methods: {
             priceSign(itemprice) {
-                return itemprice.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' });
+
+                return `${ this.currencySymbol } ${ itemprice }`
+
+//                return itemprice.toLocaleString('en-US', {
+//                    style: 'currency',
+//                    currency: 'EUR'
+//                });
             },
             sendTotalAmount(totalPrice) {
                 Eventbus.$emit('CALC_TOTAL', totalPrice.price);
