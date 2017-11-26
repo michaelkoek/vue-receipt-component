@@ -4,7 +4,6 @@
         <div class="content-box">
             <h3 class="invoice-component__title">{{ name }}</h3>
             <slot></slot>
-            <slot name="summary"></slot>
         </div>
     </div>
 

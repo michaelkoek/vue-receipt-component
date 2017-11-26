@@ -3,7 +3,7 @@
 
         <receipts name="Your Receipt" currency="EUR" v-if="true">
             <receipt-items :products="invoiceItem"></receipt-items>
-            <receipt-summary slot="summary" :summary="invoiceSummaryData"></receipt-summary>
+            <receipt-summary :summary="invoiceSummaryData"></receipt-summary>
         </receipts>
 
     </div>
