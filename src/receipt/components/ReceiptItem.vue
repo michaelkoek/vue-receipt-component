@@ -9,7 +9,7 @@
 <script>
 
     import Eventbus from '../event-bus';
-    import currencyTypes from './currencytypes';
+    import currencyTypes from '../currencytypes';
 
     export default {
         data() {
