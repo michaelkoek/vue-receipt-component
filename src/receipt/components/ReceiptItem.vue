@@ -39,7 +39,7 @@
         },
         mounted() {
             Eventbus.$on('CURRENCY', (currencyType) => {
-                this.currency_default = currencyType
+                this.currency_default = currencyType;
             });
 
             this.$nextTick(() => {
@@ -52,13 +52,7 @@
         },
         methods: {
             priceSign(itemprice) {
-
                 return `${ this.currencySymbol } ${ itemprice }`
-
-//                return itemprice.toLocaleString('en-US', {
-//                    style: 'currency',
-//                    currency: 'EUR'
-//                });
             },
             sendTotalAmount(totalPrice) {
                 Eventbus.$emit('CALC_TOTAL', totalPrice.price);

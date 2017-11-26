@@ -15,7 +15,7 @@
 
             <li class="invoice-component--discount invoice-component__item" v-if="summary.discount">
                 <p class="invoice-component__item-name">Discount ({{ summary.discount }}%):</p>
-                <p class="invoice-component__item-price">- {{ calcDiscount.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' }) }}</p>
+                <p class="invoice-component__item-price">{{ calcDiscount.toLocaleString('nl-NL', { style: 'currency', currency: 'EUR' }) }}</p>
             </li>
 
             <li class="invoice-component--total invoice-component__item">
