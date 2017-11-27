@@ -2,8 +2,7 @@
 
     <div class="receipt-component__summary">
         <ul class="receipt-component__list">
-
-            <li class="qwadd-receipt--subtotal receipt-component__item">
+            <li class="receipt-component--subtotal receipt-component__item">
                 <p class="receipt-component__item-name">Sub total:</p>
                 <p class="receipt-component__item-price">{{ currencySymbol }} {{ calculatedTotal }}</p>
             </li>

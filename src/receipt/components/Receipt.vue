@@ -1,10 +1,8 @@
 <template>
 
-    <div class="invoice-component">
-        <div class="content-box">
-            <h3 class="invoice-component__title">{{ name }}</h3>
-            <slot></slot>
-        </div>
+    <div class="receipt-component">
+        <h3 class="receipt-component__title">{{ name }}</h3>
+        <slot></slot>
     </div>
 
 </template>
@@ -27,7 +25,6 @@
             getCurrency() {
                 Eventbus.$emit('CURRENCY', this.currency);
             }
-
         },
         mounted() {
             this.getCurrency();

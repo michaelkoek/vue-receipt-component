@@ -1,6 +1,6 @@
 <template>
-    <ul class="invoice-component__list invoice-component__products">
-        <li class="invoice-component__item" v-for="(item, index) in products">
+    <ul class="receipt-component__list receipt-component__products">
+        <li class="receipt-component__item" v-for="(item, index) in products" :key="index">
             {{ item.name }} - {{ priceSign(item.price) }}
         </li>
     </ul>

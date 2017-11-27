@@ -24,9 +24,9 @@
                 ],
                 invoiceSummaryData: {
                     // subtotal: 25.25,
-                    discount: 10,
+                    discount: 25,
                     // discountprice: 10,
-                    vatpercentage: 6,
+                    vatpercentage: 21,
                     // vatprice: 20,
                     // total: 1400
                 }
