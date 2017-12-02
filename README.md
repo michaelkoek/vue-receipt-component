@@ -47,6 +47,20 @@ import Receipt from 'vue-receipt-component';
 Vue.use(Receipt);
 ```
 
+### Set currency type
+You can set the currency this by passing the currency property and the currency name in the three letters caps format.
+If you currency type is supported, it will show the currency symbol.
+```
+<receipts name="Your Receipt" currency="EUR"></receipts>
+```
+
+#### Show currency type name
+If you **don't** want the currency symbol set the option to false by adding the dynamic
+property `:symbol="false"`:
+```
+<receipts name="Your Receipt" currency="EUR" :symbol="false"></receipts>
+```
+
 ## Populate the  data
 The items receives an array of objects which should hold the product name and the price
 e.g.
