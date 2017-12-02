@@ -14,7 +14,8 @@
     export default {
         data() {
             return {
-                currencyType: ''
+                currencyType: '',
+                currencyCheckSymbol: true
             }
         },
         props: {
@@ -25,7 +26,7 @@
         },
         computed: {
             currencySymbol() {
-                if (!currencyTypes.currencySymbols[this.currencyType]) {
+                if (!currencyTypes.currencySymbols[this.currencyType] || this.currencyCheckSymbol === false) {
                     return this.currencyType;
                 } else {
                     return currencyTypes.currencySymbols[this.currencyType];
@@ -33,8 +34,9 @@
             }
         },
         mounted() {
-            Eventbus.$on('CURRENCY', (currencyType) => {
-                this.currencyType = currencyType;
+            Eventbus.$on('CURRENCY', (currencyConf) => {
+                this.currencyType = currencyConf.currencyType;
+                this.currencyCheckSymbol = currencyConf.currencySymbol;
             });
 
             this.$nextTick(() => {

@@ -19,11 +19,15 @@
             currency: {
                 type: String,
                 default: 'EUR'
+            },
+            symbol: {
+                type: Boolean,
+                default: true
             }
         },
         methods: {
             getCurrency() {
-                Eventbus.$emit('CURRENCY', this.currency);
+                Eventbus.$emit('CURRENCY', { currencyType: this.currency, currencySymbol: this.symbol });
             }
         },
         mounted() {

@@ -1,7 +1,7 @@
 <template>
     <div id="app">
 
-        <receipts name="Your Receipt" currency="EUR" v-if="true">
+        <receipts name="Your Receipt" currency="EUR">
             <receipt-items :products="invoiceItem"></receipt-items>
             <receipt-summary :summary="invoiceSummaryData"></receipt-summary>
         </receipts>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import { Receipt, ReceiptItem, ReceiptSummary } from './receipt';
+    import { Receipts, ReceiptItems, ReceiptSummary } from './receipt';
 
     export default {
         name: 'app',
@@ -33,9 +33,9 @@
             }
         },
         components: {
-            receipts: Receipt,
-            receiptItems: ReceiptItem,
-            receiptSummary: ReceiptSummary
+            Receipts,
+            ReceiptItems,
+            ReceiptSummary
         }
     }
 </script>

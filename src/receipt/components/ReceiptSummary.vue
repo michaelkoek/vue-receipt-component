@@ -1,5 +1,4 @@
 <template>
-
     <div class="receipt-component__summary">
         <ul class="receipt-component__list">
             <li class="receipt-component--subtotal receipt-component__item">
@@ -35,6 +34,7 @@
             return {
                 calculatedTotal: 0,
                 currencyType: '',
+                currencyCheckSymbol: true
             }
         },
         props: {
@@ -44,7 +44,7 @@
         },
         computed: {
             currencySymbol() {
-                if (!currencyTypes.currencySymbols[this.currencyType]) {
+                if (!currencyTypes.currencySymbols[this.currencyType] || this.currencyCheckSymbol === false) {
                     return this.currencyType;
                 } else {
                     return currencyTypes.currencySymbols[this.currencyType];
@@ -57,7 +57,6 @@
                 calc = parseFloat(Math.round(calc * 100) / 100).toFixed(2);
                 return +calc;
             },
-
             calcDiscount() {
                 if (this.summary.discountprice) return this.summary.discountprice;
 
@@ -65,7 +64,6 @@
                 calc = parseFloat(Math.round(calc * 100) / 100).toFixed(2);
                 return +calc;
             },
-
             calcTotal() {
                 if (this.summary.total) return this.summary.total;
                 const resultTotal = +((
@@ -87,8 +85,9 @@
         },
         mounted() {
             Eventbus.$on('CALC_TOTAL', (payLoad) => this.getSubTotal(payLoad));
-            Eventbus.$on('CURRENCY', (currencyType) => {
-                this.currencyType = currencyType;
+            Eventbus.$on('CURRENCY', (currencyConf) => {
+                this.currencyType = currencyConf.currencyType;
+                this.currencyCheckSymbol = currencyConf.currencySymbol;
             });
         }
     }
