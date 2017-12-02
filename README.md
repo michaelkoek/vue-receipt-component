@@ -15,8 +15,8 @@ npm install vue-receipt-component --save
 How to use:
 ```
 <receipts name="Your Receipt" currency="EUR">
-    <receipt-items :products="invoiceItem"></receipt-items>
-    <receipt-summary slot="summary" :summary="invoiceSummaryData"></receipt-summary>
+    <receipt-items :products="productItems"></receipt-items>
+    <receipt-summary :summary="productSummary"></receipt-summary>
 </receipts>
 ```
 
@@ -28,14 +28,59 @@ The most common use case is to register the component globally.
 import Vue from 'vue';
 import { Receipt, ReceiptItem, ReceiptSummary } from 'vue-receipt-component';
 
+// Install as a global component...
 Vue.component('receipt', Receipt);
 Vue.component('receiptItem', ReceiptItem);
 Vue.component('receiptSummary', ReceiptSummary);
+
+// or as an local component
+components: {
+    Receipts,
+    ReceiptItems,
+    ReceiptSummary
+}
 ```
 Alternatively you can do this to register the components:
 ```
 import Receipt from 'vue-receipt-component';
 
 Vue.use(Receipt);
+```
+
+## Populate the  data
+The items receives an array of objects which should hold the product name and the price
+e.g.
+```
+productItems: [
+    { name: 'Cheese Product 1', price: 2.50 },
+    { name: 'Cheese Product 2', price: 3.23 },
+    { name: 'Cheese Product 3', price: 4.35 },
+    { name: 'Cheese Product 4', price: 1.99 }
+]
+```
+which you will need to pass as a dynamic property to the receipt item like so:
+```
+<receipt-items :products="productItems"></receipt-items>
+```
+
+
+The summary data should receive an object of options which will set the prices.
+You could choose if the prices are **calculated dynamically** based the prices of the items
+or pass the data dynamically.
+
+These are all the options:
+```
+invoiceSummaryData: {
+    subtotal: 25.25,
+    discount: 25,
+    discountprice: 10,
+    vatpercentage: 21,
+    vatprice: 20,
+    total: 1400
+}
+```
+Which you will need to pass a dynamic property as well.
+```
+<receipt-summary :summary="productSummary"></receipt-summary>
 ```
 
