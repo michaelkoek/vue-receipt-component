@@ -26,15 +26,18 @@ const commonConfig = {
         ]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin( {
-            minimize : true,
-            sourceMap : false,
+        new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            sourceMap: false,
             mangle: true,
             compress: {
                 warnings: false
             }
         })
-    ]
+    ],
+    externals: {
+        vue: 'vue',
+    }
 };
 
 module.exports = [

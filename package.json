@@ -5,7 +5,7 @@
   "author": "Michael Koek <michaelkoek@gmail.com>",
   "main": "dist/vue-receipt-component.js",
   "scripts": {
-    "build": "rimraf ./dist && webpack --config ./webpack.config.js"
+    "build": "rimraf ./dist && NODE_ENV=production webpack --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
