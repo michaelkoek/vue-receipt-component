@@ -1,13 +1,11 @@
 {
   "name": "vue-receipt-component",
   "description": "A receipt component for your vue project",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Michael Koek <michaelkoek@gmail.com>",
-  "main": "receipts/index",
+  "main": "dist/vue-receipt-component",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "rm -rf dist && NODE_ENV=production webpack"
+    "build": "rimraf ./dist && webpack --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -35,7 +33,6 @@
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.5",
-    "webpack-merge": "^4.1.1"
+    "webpack-dev-server": "^2.9.5"
   }
 }
