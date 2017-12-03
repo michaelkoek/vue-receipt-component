@@ -3,7 +3,7 @@
   "description": "A receipt component for your vue project",
   "version": "1.0.3",
   "author": "Michael Koek <michaelkoek@gmail.com>",
-  "main": "dist/vue-receipt-component",
+  "main": "dist/vue-receipt-component.js",
   "scripts": {
     "build": "rimraf ./dist && webpack --config ./webpack.config.js"
   },
