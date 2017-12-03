@@ -61,7 +61,7 @@ If you currency type is supported, it will show the currency symbol.
 ```
 
 #### Show currency type name
-If you **don't** want the currency symbol set the option to false by adding the dynamic
+If you **don't** want the currency symbol, set the option to false by adding the dynamic
 property `:symbol="false"`:
 ```
 <receipts name="Your Receipt" currency="EUR" :symbol="false"></receipts>
