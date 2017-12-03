@@ -11,13 +11,13 @@ const commonConfig = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 include: __dirname,
                 exclude: /node_modules/
             },
             {
                 test: /\.vue$/,
-                loader: 'vue'
+                loader: 'vue-loader'
             },
             {
                 test: /\.css$/,
@@ -38,7 +38,7 @@ const commonConfig = {
 };
 
 module.exports = [
-    merge(config, {
+    merge(commonConfig, {
         entry: path.resolve(__dirname + '/src/receipt/plugin.js'),
         output: {
             path: path.resolve(__dirname, 'dist'),
@@ -47,7 +47,7 @@ module.exports = [
             library: 'VueReceiptComponent'
         }
     }),
-    merge(config, {
+    merge(commonConfig, {
         entry: path.resolve(__dirname + '/src/receipt/index.js'),
         output: {
             path: path.resolve(__dirname, 'dist'),
