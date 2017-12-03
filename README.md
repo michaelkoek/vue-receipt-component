@@ -47,6 +47,12 @@ import Receipt from 'vue-receipt-component';
 Vue.use(Receipt);
 ```
 
+### Set your own custom title
+Set a custom title by passing the title in the name attribute
+```
+<receipts name="Your Receipt"></receipts>
+```
+
 ### Set currency type
 You can set the currency this by passing the currency property and the currency name in the three letters caps format.
 If you currency type is supported, it will show the currency symbol.
