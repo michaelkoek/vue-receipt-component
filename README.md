@@ -68,8 +68,13 @@ property `:symbol="false"`:
 ```
 
 ## Populate the  data
-The items receives an array of objects which should hold the product name and the price
+
+### Product items
+The items receives an `array` of objects which should hold the product name and the price
 e.g.
+
+The item name should be `name` and the product price is `price`
+
 ```
 productItems: [
     { name: 'Cheese Product 1', price: 2.50 },
@@ -83,14 +88,14 @@ which you will need to pass as a dynamic property to the receipt item like so:
 <receipt-items :products="productItems"></receipt-items>
 ```
 
-
-The summary data should receive an object of options which will set the prices.
+### Summary
+The summary data should receive an `object` of options which will set the prices.
 You could choose if the prices are **calculated dynamically** based the prices of the items
-or pass the data dynamically.
+or pass the data through the object options if you want to do the calculation elsewhere like on the backend.
 
 These are all the options:
 ```
-invoiceSummaryData: {
+productSummary: {
     subtotal: 25.25,
     discount: 25,
     discountprice: 10,
