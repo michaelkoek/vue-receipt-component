@@ -1,7 +1,7 @@
 {
   "name": "vue-receipt-component",
   "description": "A receipt component for your vue project",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Michael Koek <michaelkoek@gmail.com>",
   "main": "dist/vue-receipt-component.js",
   "scripts": {
