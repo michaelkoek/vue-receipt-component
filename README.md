@@ -34,10 +34,13 @@ Vue.component('receiptItem', ReceiptItem);
 Vue.component('receiptSummary', ReceiptSummary);
 
 // or as an local component
-components: {
-    Receipts,
-    ReceiptItems,
-    ReceiptSummary
+export default {
+    // ...,
+    components: {
+        Receipts,
+        ReceiptItems,
+        ReceiptSummary
+    }
 }
 ```
 Alternatively you can do this to register the components:
@@ -54,7 +57,7 @@ Set a custom title by passing the title in the name attribute
 ```
 
 ### Set currency type
-You can set the currency this by passing the currency property and the currency name in the three letters caps format.
+You can set the currency by passing the currency property and the currency name in the three letters caps format (e.g. EUR for Euro).
 If you currency type is supported, it will show the currency symbol.
 ```
 <receipts name="Your Receipt" currency="EUR"></receipts>
@@ -67,7 +70,7 @@ property `:symbol="false"`:
 <receipts name="Your Receipt" currency="EUR" :symbol="false"></receipts>
 ```
 
-## Populate the  data
+## Populate the data
 
 ### Product items
 The items receives an `array` of objects which should hold the product name and the price
@@ -92,6 +95,8 @@ which you will need to pass as a dynamic property to the receipt item like so:
 The summary data should receive an `object` of options which will set the prices.
 You could choose if the prices are **calculated dynamically** based the prices of the items
 or pass the data through the object options if you want to do the calculation elsewhere like on the backend.
+
+Leave the option out you don't want to use.
 
 These are all the options:
 ```
