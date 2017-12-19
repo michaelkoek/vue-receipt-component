@@ -1,10 +1,8 @@
 <template>
-
     <div class="receipt-component">
         <h3 class="receipt-component__title">{{ name }}</h3>
         <slot></slot>
     </div>
-
 </template>
 
 <script>
